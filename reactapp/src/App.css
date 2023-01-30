@@ -1,41 +1,81 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .container-app {
+    width: 100vw;
+    height: 100vh;
+    background-color: #2c264c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .container {
+    width: 90%;
+    height: 90%;
+    background-color: #272a37;
+    border-radius: 2rem;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+  
+  .container-app .container {
+    padding: 3rem;
+    width: 90%;
+    height: 90%; 
+  }
+  
+  .container-app .container .header-top ul {
+    display: flex;
+  }
+  
+  .container-app .container .header-top ul li {
+    list-style: none;
+    margin-right: 5rem;
+    color: #ff266a;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  
+  .container-app .container main {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 52%;
+    margin-top: 150px;
+  }
+  
+  .container-app .container main input {
+    padding: 20px 10px;
+    border-radius: 1rem;
+    width: 400px;
+    background-color: #191622;
+    color: #FFF;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+  }
+  
+  .container-app .container main button {
+    padding: 20px 10px;
+    border-radius: 1rem;
+    width: 200px;
+    background-color: #191622;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    margin-left: 25%;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+    
+ 
