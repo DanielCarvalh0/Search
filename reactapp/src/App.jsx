@@ -7,15 +7,19 @@ function App() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
 
-  const handleSearch = () => {
+  const [resultsPerPage, setResultsPerPage] = useState(10)
+  const [currentPage, setCurrentPage] = useState(0)
 
+  const pages = Math.ceil(results.length / resultsPerPage)
+  const startIndex = currentPage * resultsPerPage
+  const endIndex = startIndex + resultsPerPage
+  const currentResults = results.slice(startIndex, endIndex)
+
+  const handleSearch = () => {
     axios
       .get(`https://api.github.com/search/users?q=${encodeURIComponent(search)}`)
       .then((res) =>{
-        console.log({ res })
-
         setResults(res.data.items)
-        console.log('res: ', results)
     });
   }
 
@@ -29,6 +33,7 @@ function App() {
           </header>
 
           <main>
+
             <div className='form'>
               <input 
                 type="text" 
@@ -39,16 +44,26 @@ function App() {
                 onClick={handleSearch}>Buscar
               </button>
             </div>
+
+            <div className='pages'>
+                {Array.from(Array(pages), (result, index) => {
+                  return <button>{index}</button>
+                })}
+            </div>
+                {currentResults.map(result => {
+                  return <div className='item-result'><span>{result.name}</span></div>
+                })}
+                
             <div className='result'>
               <ul className='list'>
                 {results.map(result => {
-                  console.log(result)
                   return (
                     <li>{result.login}</li>
                   )
                 })}
               </ul>
             </div>
+
           </main>
         </div>
       </div>
