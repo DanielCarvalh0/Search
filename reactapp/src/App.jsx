@@ -5,13 +5,18 @@ import './App.css'
 function App() {
 
   const [search, setSearch] = useState("");
-  
-  const handleSearch = () => {
+  const [results, setResults] = useState([]);
 
-    axios
-      .get(`https://api.github.com/users/${search}`)
+  const handleSearch = () => {
+    console.log('User encontrado', search)
+    fetch(`https://api.github.com/users?q=${search}`)
       .then((res) =>{
-        console.log(res.data)
+        let results = [];
+        console.log(res)
+        for (var i = 0; i < res.length; i++) {
+          results.push(res[i].employee_name)
+        }
+        setResults(results)
     });
   }
 
@@ -35,6 +40,15 @@ function App() {
                 onClick={handleSearch}>Buscar
               </button>
             </div>
+            
+            <ul>
+              {results.map(result => {
+                return (
+                  <li>{result.toString()}</li>
+                )
+              })}
+              <li></li>
+            </ul>
           </main>
         </div>
       </div>
