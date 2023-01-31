@@ -8,15 +8,14 @@ function App() {
   const [results, setResults] = useState([]);
 
   const handleSearch = () => {
-    console.log('User encontrado', search)
-    fetch(`https://api.github.com/users?q=${search}`)
+
+    axios
+      .get(`https://api.github.com/search/users?q=${encodeURIComponent(search)}`)
       .then((res) =>{
-        let results = [];
-        console.log(res)
-        for (var i = 0; i < res.length; i++) {
-          results.push(res[i].employee_name)
-        }
-        setResults(results)
+        console.log({ res })
+
+        setResults(res.data.items)
+        console.log('res: ', results)
     });
   }
 
@@ -40,15 +39,16 @@ function App() {
                 onClick={handleSearch}>Buscar
               </button>
             </div>
-            
-            <ul>
-              {results.map(result => {
-                return (
-                  <li>{result.toString()}</li>
-                )
-              })}
-              <li></li>
-            </ul>
+            <div className='result'>
+              <ul className='list'>
+                {results.map(result => {
+                  console.log(result)
+                  return (
+                    <li>{result.login}</li>
+                  )
+                })}
+              </ul>
+            </div>
           </main>
         </div>
       </div>
