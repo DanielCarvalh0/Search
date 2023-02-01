@@ -77,7 +77,31 @@
     font-size: 1.2rem;
   }
 
+  .search-number {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
   .list {
-    color: pink;
+    color: #1177ee;
     list-style: none;
   }
+
+  .page {
+    color: #9977ee;
+    font-size: x-large;
+  }
+
+  .page ul {
+    display: flex;
+  }
+
+  .page ul li {
+    list-style-type: none;
+    padding: 10px;
+    text-decoration: none;
+    background-color: #FFF;
+    border-radius: 1rem;
+  }
+  
+ 

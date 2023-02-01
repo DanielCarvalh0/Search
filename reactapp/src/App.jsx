@@ -1,31 +1,33 @@
 import axios from 'axios'
 import { useState } from 'react'
+import Pagination from "react-js-pagination"
 import './App.css'
 
 function App() {
 
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
+  
+  const [totalResults, setTotalResults] = useState(0);
+  const [activePage, setActivePage] = useState(1);
 
-  const [resultsPerPage, setResultsPerPage] = useState(10)
-  const [currentPage, setCurrentPage] = useState(0)
-
-  const pages = Math.ceil(results.length / resultsPerPage)
-  const startIndex = currentPage * resultsPerPage
-  const endIndex = startIndex + resultsPerPage
-  const currentResults = results.slice(startIndex, endIndex)
+  const handlePageChange = (pageNumber) => {
+    setActivePage( pageNumber );
+  }
 
   const handleSearch = () => {
     axios
       .get(`https://api.github.com/search/users?q=${encodeURIComponent(search)}`)
       .then((res) =>{
         setResults(res.data.items)
+        setTotalResults(res.data.total_count)
     });
   }
-
+ 
   return (
       <div className="container-app">
         <div className='container'>
+
           <header className='header-top'>
             <ul>
               <li>Buscador de usuários do GitHub</li>
@@ -43,27 +45,34 @@ function App() {
               <button 
                 onClick={handleSearch}>Buscar
               </button>
+              <h1 className='search-number'>Resultados encotrados: <br />{totalResults}</h1>
             </div>
-
-            <div className='pages'>
-                {Array.from(Array(pages), (result, index) => {
-                  return <button>{index}</button>
-                })}
-            </div>
-                {currentResults.map(result => {
-                  return <div className='item-result'><span>{result.name}</span></div>
-                })}
                 
             <div className='result'>
               <ul className='list'>
                 {results.map(result => {
                   return (
                     <li>{result.login}</li>
+                    
                   )
-                })}
+                })}            
               </ul>
             </div>
 
+            <div className='page'>
+              <ul>
+                <li>
+                  <Pagination
+                    activePage={activePage}
+                    itemsCountPerPage={30}
+                    totalItemsCount={totalResults}
+                    pageRangeDisplayed={3}
+                    onChange={handlePageChange}
+                    
+                  />
+                </li>
+              </ul>
+            </div>
           </main>
         </div>
       </div>
