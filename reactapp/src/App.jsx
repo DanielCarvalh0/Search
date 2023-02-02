@@ -5,7 +5,7 @@ import './App.css'
 
 const ITEMS_PER_PAGE = 30
 
-const App = () => {
+const App = ()=> {
     const [search, setSearch] = useState('')
     const [results, setResults] = useState([])
 
@@ -64,6 +64,23 @@ const App = () => {
                             Resultados encotrados: <br />
                             {totalResults}
                         </h1>
+
+                        {totalResults > ITEMS_PER_PAGE ? (
+                        <div className="page">
+                            <ul>
+                                <li>
+                                    <Pagination
+                                        activePage={activePage}
+                                        itemsCountPerPage={ITEMS_PER_PAGE}
+                                        totalItemsCount={totalResults}
+                                        pageRangeDisplayed={3}
+                                        onChange={handlePageChange}
+                                    />
+                                </li>
+                            </ul>
+                        </div>
+                        ) : null}
+
                     </div>
 
                     <div className='result'>
@@ -71,29 +88,16 @@ const App = () => {
                             {results.map((result) => {
                                 return <li key={result.id}>
                                     <div>
-                                        <img src={result.avatar_url} style={{width: 20, height: 20}} /> | 
-                                        <span>{result.login}</span>
+                                        <img src={result.avatar_url}/>
+                                        <span>{result.login}</span> 
+                                        <span>Seguidores: {result.followers_url.length}</span>
+                                        <span>Seguindo: {result.following_url.length}</span>
                                     </div>
                                 </li>
                             })}
                         </ul>
                     </div>
 
-                    {totalResults > ITEMS_PER_PAGE ? (
-                        <div className="page">
-                        <ul>
-                            <li>
-                                <Pagination
-                                    activePage={activePage}
-                                    itemsCountPerPage={ITEMS_PER_PAGE}
-                                    totalItemsCount={totalResults}
-                                    pageRangeDisplayed={3}
-                                    onChange={handlePageChange}
-                                />
-                            </li>
-                        </ul>
-                    </div>
-                    ) : null}
                 </main>
             </div>
         </div>

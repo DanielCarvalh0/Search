@@ -3,51 +3,51 @@
     padding: 0;
     border: 0;
     box-sizing: border-box;
-  }
-  
-  .container-app {
+}
+
+.container-app {
     width: 100vw;
     height: 100vh;
     background-color: #2c264c;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .container {
+}
+
+.container {
     width: 90%;
     height: 90%;
     background-color: #272a37;
     border-radius: 2rem;
-  }
-  
-  .container-app .container {
+}
+
+.container-app .container {
     padding: 3rem;
     width: 90%;
-    height: 90%; 
-  }
-  
-  .container-app .container .header-top ul {
+    height: 90%;
+}
+
+.container-app .container .header-top ul {
     display: flex;
-  }
-  
-  .container-app .container .header-top ul li {
+}
+
+.container-app .container .header-top ul li {
     list-style: none;
     margin-right: 5rem;
     color: #ff266a;
     font-size: 2.5rem;
     font-weight: 700;
-  }
-  
-  .container-app .container main {
+}
+
+.container-app .container main {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    position:relative;
-    
-  }
-  
-  .container-app .container main input {
+    position: relative;
+
+}
+
+.container-app .container main input {
     padding: 20px 10px;
     border-radius: 1rem;
     width: 400px;
@@ -60,9 +60,9 @@
     font-weight: 700;
     margin-bottom: 2rem;
     font-size: 1.2rem;
-  }
-  
-  .container-app .container main button {
+}
+
+.container-app .container main button {
     padding: 20px 10px;
     border-radius: 1rem;
     width: 200px;
@@ -75,47 +75,70 @@
     cursor: pointer;
     font-weight: 700;
     font-size: 1.2rem;
-  }
+}
 
-  .search-number {
+.search-number {
     margin-top: 40px;
     text-align: center;
     color: #fee40c;
     background-color: #4499;
-    border-radius: 1rem ;
+    border-radius: 1rem;
     padding: 10px;
-  }
-  
-  .list {
-    color: #9977ee;
-    list-style: none;
-  }
+}
 
-  .page {
+.form {
+    margin-top: 50px;
+    margin-right: 100px;
+}
+
+.page {
     color: #9977ee;
     font-size: x-large;
     margin-top: 40px;
     margin-left: 30px;
-  }
+}
 
-  .page ul {
+.page ul {
     display: flex;
-  }
+}
 
-  .page ul li {
+.page ul li {
     list-style-type: none;
     padding: 10px;
     text-decoration: none;
     background-color: #4499;
     border-radius: 1rem;
-  }
+    margin: 5px;
+}
 
-  .page ul li a{
+.page ul li a {
     text-decoration: none;
     color: #fee40c;
-  }
+}
 
-  .result {
+.result {
     overflow-y: scroll;
     max-height: calc(100vh - 250px);
-  }
+    width: 500px;
+    margin: 10px;
+}
+
+.list {
+    color: #9977ff;
+    list-style: none;
+}
+
+.list li div {
+    font-size: large;
+    padding: 2px;
+}
+
+.list li div span {
+    margin-left: 12px;
+}
+
+.list li div img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
