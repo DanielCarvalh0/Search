@@ -80,16 +80,22 @@
   .search-number {
     margin-top: 40px;
     text-align: center;
+    color: #fee40c;
+    background-color: #4499;
+    border-radius: 1rem ;
+    padding: 10px;
   }
   
   .list {
-    color: #1177ee;
+    color: #9977ee;
     list-style: none;
   }
 
   .page {
     color: #9977ee;
     font-size: x-large;
+    margin-top: 40px;
+    margin-left: 30px;
   }
 
   .page ul {
@@ -100,8 +106,16 @@
     list-style-type: none;
     padding: 10px;
     text-decoration: none;
-    background-color: #FFF;
+    background-color: #4499;
     border-radius: 1rem;
   }
-  
- 
+
+  .page ul li a{
+    text-decoration: none;
+    color: #fee40c;
+  }
+
+  .result {
+    overflow-y: scroll;
+    max-height: calc(100vh - 250px);
+  }
