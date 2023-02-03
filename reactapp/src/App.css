@@ -133,6 +133,11 @@
     padding: 2px;
 }
 
+.list li div a {
+    text-decoration: none;
+    color: #fee40c;
+}
+
 .list li div span {
     margin-left: 12px;
 }

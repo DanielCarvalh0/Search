@@ -5,7 +5,7 @@ import './App.css'
 
 const ITEMS_PER_PAGE = 30
 
-const App = ()=> {
+const App = () => {
     const [search, setSearch] = useState('')
     const [results, setResults] = useState([])
 
@@ -16,6 +16,8 @@ const App = ()=> {
         setActivePage(pageNumber)
         handleSearch(pageNumber)
     }
+
+    
 
     const handleSearch = async (page) => {
         const queryStringFromObject = new URLSearchParams({
@@ -33,11 +35,12 @@ const App = ()=> {
                     }
                 }
             )
-            .then(res => res.data)
+            .then((res) => res.data)
             .then((res) => {
                 setResults(res.items)
                 setTotalResults(res.total_count)
-            }).catch(err => {
+            })
+            .catch((err) => {
                 console.error(err)
                 alert('Aconteceu algum erro, verifique o console')
             })
@@ -47,6 +50,7 @@ const App = ()=> {
         <div className="container-app">
             <div className="container">
                 <header className="header-top">
+                    
                     <ul>
                         <li>Buscador de usuários do GitHub</li>
                     </ul>
@@ -66,38 +70,44 @@ const App = ()=> {
                         </h1>
 
                         {totalResults > ITEMS_PER_PAGE ? (
-                        <div className="page">
-                            <ul>
-                                <li>
-                                    <Pagination
-                                        activePage={activePage}
-                                        itemsCountPerPage={ITEMS_PER_PAGE}
-                                        totalItemsCount={totalResults}
-                                        pageRangeDisplayed={3}
-                                        onChange={handlePageChange}
-                                    />
-                                </li>
-                            </ul>
-                        </div>
+                            <div className="page">
+                                <ul>
+                                    <li>
+                                        <Pagination
+                                            activePage={activePage}
+                                            itemsCountPerPage={ITEMS_PER_PAGE}
+                                            totalItemsCount={totalResults}
+                                            pageRangeDisplayed={3}
+                                            onChange={handlePageChange}
+                                        />
+                                    </li>
+                                </ul>
+                            </div>
                         ) : null}
-
                     </div>
-
-                    <div className='result'>
+                            
+                    <div className="result">
                         <ul className="list">
                             {results.map((result) => {
-                                return <li key={result.id}>
-                                    <div>
-                                        <img src={result.avatar_url}/>
-                                        <span>{result.login}</span> 
-                                        <span>Seguidores: {result.followers_url.length}</span>
-                                        <span>Seguindo: {result.following_url.length}</span>
-                                    </div>
-                                </li>
+                                return (
+                                    <li key={result.id}>
+                                        <div>
+                                            <img src={result.avatar_url} />
+                                            <a href={`https://github.com/${result.login}`} target='_blank' >
+                                                <span>{result.login}</span>
+                                            </a>
+                                            <span>
+                                                Seguidores: {result.followers_url.length}
+                                            </span>
+                                            <span>
+                                                Seguindo: {result.following_url.length}
+                                            </span>
+                                        </div>
+                                    </li>
+                                )
                             })}
                         </ul>
                     </div>
-
                 </main>
             </div>
         </div>
