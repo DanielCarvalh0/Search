@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Pagination from 'react-js-pagination'
 import './App.css'
 
@@ -16,8 +16,6 @@ const App = () => {
         setActivePage(pageNumber)
         handleSearch(pageNumber)
     }
-
-    
 
     const handleSearch = async (page) => {
         const queryStringFromObject = new URLSearchParams({
@@ -46,6 +44,13 @@ const App = () => {
             })
     }
 
+    const enterSubmit = e => {
+        if(e.keyCode === 13) {
+            const value = e.target.value
+            handleSearch(value)
+        }
+    }
+
     return (
         <div className="container-app">
             <div className="container">
@@ -62,11 +67,15 @@ const App = () => {
                             type="text"
                             placeholder="Digite o username"
                             onChange={(e) => setSearch(e.target.value)}
+                            onKeyDown={(e) => enterSubmit(e)}
                         />
-                        <button onClick={handleSearch}>Buscar</button>
+                        <button >Limpar</button>
+                        <button type="submit" onClick={handleSearch}>Buscar</button>
+                        
                         <h1 className="search-number">
                             Resultados encotrados: <br />
                             {totalResults}
+                            
                         </h1>
 
                         {totalResults > ITEMS_PER_PAGE ? (
