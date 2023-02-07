@@ -51,6 +51,8 @@ const App = () => {
         }
     }
 
+    
+
     return (
         <div className="container-app">
             <div className="container">
@@ -72,11 +74,15 @@ const App = () => {
                         <button >Limpar</button>
                         <button type="submit" onClick={handleSearch}>Buscar</button>
                         
-                        <h1 className="search-number">
-                            Resultados encotrados: <br />
-                            {totalResults}
-                            
-                        </h1>
+                        {totalResults > 0 ? (
+                            <div>
+                                <h1 className="search-number">
+                                    Resultados encotrados: <br />
+                                    {totalResults}
+                                    
+                                </h1>
+                            </div>
+                        ) : null}
 
                         {totalResults > ITEMS_PER_PAGE ? (
                             <div className="page">
