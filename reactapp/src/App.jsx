@@ -51,7 +51,14 @@ const App = () => {
         }
     }
 
-    
+    const reset = () => {
+        setTotalResults(0);
+
+        var getValue= document.getElementById("user-name");
+            if (getValue.value != "") {
+                getValue.value = "";
+            }
+    }
 
     return (
         <div className="container-app">
@@ -66,12 +73,13 @@ const App = () => {
                 <main>
                     <div className="form">
                         <input
+                            id='user-name'
                             type="text"
                             placeholder="Digite o username"
                             onChange={(e) => setSearch(e.target.value)}
                             onKeyDown={(e) => enterSubmit(e)}
                         />
-                        <button >Limpar</button>
+                        <button type='reset' onClick={reset}>Limpar</button>
                         <button type="submit" onClick={handleSearch}>Buscar</button>
                         
                         {totalResults > 0 ? (
@@ -100,29 +108,35 @@ const App = () => {
                             </div>
                         ) : null}
                     </div>
-                            
+
+                       
                     <div className="result">
-                        <ul className="list">
-                            {results.map((result) => {
-                                return (
-                                    <li key={result.id}>
-                                        <div>
-                                            <img src={result.avatar_url} />
-                                            <a href={`https://github.com/${result.login}`} target='_blank' >
-                                                <span>{result.login}</span>
-                                            </a>
-                                            <span>
-                                                Seguidores: {result.followers_url.length}
-                                            </span>
-                                            <span>
-                                                Seguindo: {result.following_url.length}
-                                            </span>
-                                        </div>
-                                    </li>
-                                )
-                            })}
-                        </ul>
+
+                        { totalResults > 0 ? (  
+                            <ul className="list">
+                                {results.map((result) => {
+                                    return (
+                                        <li key={result.id}>
+                                            <div>
+                                                <img src={result.avatar_url} />
+                                                <a href={`https://github.com/${result.login}`} target='_blank' >
+                                                    <span>{result.login}</span>
+                                                </a>
+                                                <span>
+                                                    Seguidores: {result.followers_url.length}
+                                                </span>
+                                                <span>
+                                                    Seguindo: {result.following_url.length}
+                                                </span>
+                                            </div>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        ) : null}
+
                     </div>
+                    
                 </main>
             </div>
         </div>
