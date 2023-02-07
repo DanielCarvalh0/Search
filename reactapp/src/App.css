@@ -68,16 +68,16 @@
 .container-app .container main button {
     padding: 20px 10px;
     border-radius: 1rem;
-    width: 200px;
+    width: 150px;
     background-color: #191622;
     color: #FFF;
     text-transform: uppercase;
     text-align: center;
-    display: block;
-    margin-left: 25%;
+    display: inline-block;
     cursor: pointer;
     font-weight: 700;
     font-size: 1.2rem;
+    margin-left: 33px;
 }
 
 .search-number {
@@ -92,6 +92,7 @@
 .form {
     margin-top: 50px;
     margin-right: 100px;
+    
 }
 
 .page {
@@ -150,3 +151,4 @@
     width: 40px;
     height: 40px;
 }
+

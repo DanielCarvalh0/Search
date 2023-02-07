@@ -79,8 +79,9 @@ const App = () => {
                             onChange={(e) => setSearch(e.target.value)}
                             onKeyDown={(e) => enterSubmit(e)}
                         />
-                        <button type='reset' onClick={reset}>Limpar</button>
+                        
                         <button type="submit" onClick={handleSearch}>Buscar</button>
+                        <button type='reset' onClick={reset}>Limpar</button>
                         
                         {totalResults > 0 ? (
                             <div>
