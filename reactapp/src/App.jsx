@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Pagination from 'react-js-pagination'
 import './App.css'
 
@@ -12,12 +12,18 @@ const App = () => {
     const [totalResults, setTotalResults] = useState(0)
     const [activePage, setActivePage] = useState(1)
 
+    const [isSubmited, setIsSubmited] = useState(false)
+
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber)
         handleSearch(pageNumber)
     }
 
     const handleSearch = async (page) => {
+
+        setIsSubmited(true)
+        if(search === '') return
+        
         const queryStringFromObject = new URLSearchParams({
             q: search,
             per_page: ITEMS_PER_PAGE,
@@ -45,7 +51,7 @@ const App = () => {
     }
 
     const enterSubmit = e => {
-        if(e.keyCode === 13) {
+        if(e.key === 'Enter') {
             const value = e.target.value
             handleSearch(value)
         }
@@ -53,11 +59,10 @@ const App = () => {
 
     const reset = () => {
         setTotalResults(0);
-
-        var getValue= document.getElementById("user-name");
-            if (getValue.value != "") {
-                getValue.value = "";
-            }
+        setSearch('')
+        setResults([])
+        setActivePage(1)
+        setIsSubmited(false)
     }
 
     return (
@@ -76,11 +81,22 @@ const App = () => {
                             id='user-name'
                             type="text"
                             placeholder="Digite o username"
-                            onChange={(e) => setSearch(e.target.value)}
+                            onChange={(e) => {
+                                setIsSubmited(false)
+                                setSearch(e.target.value)}
+                            }
                             onKeyDown={(e) => enterSubmit(e)}
+                            value={search}
                         />
+                        {isSubmited && !search ?(
+                            <div>
+                                <small>Esse campo é obrigatorio</small>
+                            </div>
+                        ): null}
+                        
                         
                         <button type="submit" onClick={handleSearch}>Buscar</button>
+
                         <button type='reset' onClick={reset}>Limpar</button>
                         
                         {totalResults > 0 ? (
@@ -88,7 +104,7 @@ const App = () => {
                                 <h1 className="search-number">
                                     Resultados encotrados: <br />
                                     {totalResults}
-                                    
+    
                                 </h1>
                             </div>
                         ) : null}
@@ -109,10 +125,8 @@ const App = () => {
                             </div>
                         ) : null}
                     </div>
-
-                       
+  
                     <div className="result">
-
                         { totalResults > 0 ? (  
                             <ul className="list">
                                 {results.map((result) => {
@@ -123,12 +137,6 @@ const App = () => {
                                                 <a href={`https://github.com/${result.login}`} target='_blank' >
                                                     <span>{result.login}</span>
                                                 </a>
-                                                <span>
-                                                    Seguidores: {result.followers_url.length}
-                                                </span>
-                                                <span>
-                                                    Seguindo: {result.following_url.length}
-                                                </span>
                                             </div>
                                         </li>
                                     )
