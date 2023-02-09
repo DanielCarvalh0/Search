@@ -1,11 +1,12 @@
 import axios from 'axios'
-import { useCallback, useEffect, useState } from 'react'
-import Pagination from 'react-js-pagination'
+import { useState } from 'react'
+import Pagination from './components/Pagination'
 import './App.css'
 import Header from './components/header'
 import Form from './components/form'
-import Result from './components/result'
+import Result from './components/Result'
 import CountResults from './components/CountResults'
+import PageChange from './components/Pagination'
 
 const ITEMS_PER_PAGE = 30
 
@@ -59,7 +60,7 @@ const App = () => {
     return (
         <div className="container-app">
             <div className="container">
-                
+
                 <Header title={'Buscador de usuários do GitHub'} />
 
                 <main>
@@ -73,6 +74,13 @@ const App = () => {
                     />
 
                     <CountResults totalResults={totalResults} />
+
+                    <PageChange
+                        totalResults={totalResults}
+                        activePage={activePage}
+                        ITEMS_PER_PAGE={ITEMS_PER_PAGE}
+                        handlePageChange={handlePageChange}
+                    />
 
                     <Result results={results}/>
 

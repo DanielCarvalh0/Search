@@ -81,4 +81,4 @@ const Form = ({ onSubmitForm, onResetForm }) => {
     )
 }
 
-export default Form
+export default Form;

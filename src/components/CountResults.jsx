@@ -15,4 +15,4 @@ const CountResults = ({ totalResults }) => {
     )
 }
 
-export default CountResults
+export default CountResults;
