@@ -59,6 +59,7 @@ const App = () => {
     return (
         <div className="container-app">
             <div className="container">
+                
                 <Header title={'Buscador de usuários do GitHub'} />
 
                 <main>
@@ -70,8 +71,11 @@ const App = () => {
                             reset()
                         }}
                     />
+
                     <CountResults totalResults={totalResults} />
+
                     <Result results={results}/>
+
                 </main>
             </div>
         </div>
