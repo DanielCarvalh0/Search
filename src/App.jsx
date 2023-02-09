@@ -5,6 +5,8 @@ import './App.css'
 
 const ITEMS_PER_PAGE = 30
 
+const ENV = import.meta.env
+
 const App = () => {
     const [search, setSearch] = useState('')
     const [results, setResults] = useState([])
@@ -32,7 +34,7 @@ const App = () => {
                 `https://api.github.com/search/users?${queryStringFromObject}`,
                 {
                     heders: {
-                        Authorization: (ENV)
+                        Authorization: (ENV.VITE_TOKEN_ACCESS)
                     }
                 }
             )
@@ -61,8 +63,6 @@ const App = () => {
         setActivePage(1)
         setIsSubmited(false)
     }
-
-    const ENV = import.meta.env.VITE_TOKEN_ACCESS
 
     return (
         <div className="container-app">
