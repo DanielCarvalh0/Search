@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Pagination from 'react-js-pagination'
 import './App.css'
 import Header from './components/header'
+import Form from './components/form'
+import Result from './components/result'
 
 const ITEMS_PER_PAGE = 30
 
@@ -72,77 +74,8 @@ const App = () => {
                 <Header />
 
                 <main>
-                    <div className="form">
-                        <input
-                            id="user-name"
-                            type="text"
-                            placeholder="Digite o username"
-                            onChange={(e) => {
-                                setIsSubmited(false)
-                                setSearch(e.target.value)
-                            }}
-                            onKeyDown={(e) => enterSubmit(e)}
-                            value={search}
-                        />
-
-                        {isSubmited && !search ? (
-                            <small>Esse campo é obrigatorio</small>
-                        ) : null}
-
-                        <button type="submit" onClick={handleSearch}>
-                            Buscar
-                        </button>
-                        <button type="reset" onClick={reset}>
-                            Limpar
-                        </button>
-
-                        {totalResults > 0 ? (
-                            <div>
-                                <h1 className="search-number">
-                                    Resultados encotrados: <br />
-                                    {totalResults}
-                                </h1>
-                            </div>
-                        ) : null}
-
-                        {totalResults > ITEMS_PER_PAGE ? (
-                            <div className="page">
-                                <ul>
-                                    <li>
-                                        <Pagination
-                                            activePage={activePage}
-                                            itemsCountPerPage={ITEMS_PER_PAGE}
-                                            totalItemsCount={totalResults}
-                                            pageRangeDisplayed={3}
-                                            onChange={handlePageChange}
-                                        />
-                                    </li>
-                                </ul>
-                            </div>
-                        ) : null}
-                    </div>
-
-                    <div className="result">
-                        {totalResults > 0 ? (
-                            <ul className="list">
-                                {results.map((result) => {
-                                    return (
-                                        <li key={result.id}>
-                                            <div>
-                                                <img src={result.avatar_url} />
-                                                <a
-                                                    href={`https://github.com/${result.login}`}
-                                                    target="_blank"
-                                                >
-                                                    <span>{result.login}</span>
-                                                </a>
-                                            </div>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        ) : null}
-                    </div>
+                    <Form />
+                    <Result />
                 </main>
             </div>
         </div>
