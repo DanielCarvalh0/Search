@@ -1,6 +1,6 @@
 import Pagination from "react-js-pagination";
 
-const PageChange = ( activePage, totalResults, ITEMS_PER_PAGE, handlePageChange ) => {
+const PageChange = ( {activePage, totalResults, ITEMS_PER_PAGE, handlePageChange} ) => {
 
     if( totalResults > ITEMS_PER_PAGE  ) {
         return null
