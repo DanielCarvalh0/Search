@@ -1,7 +1,12 @@
-const Result = () => {
+const Result = ( results ) => {
+    if(!results.length > 0) {
+        return(null)
+        
+    }
+    
     return (
         <div className="result">
-            {totalResults > 0 ? (
+            
                 <ul className="list">
                     {results.map((result) => {
                         return (
@@ -19,7 +24,7 @@ const Result = () => {
                         )
                     })}
                 </ul>
-            ) : null}
+            
         </div>
     )
 }

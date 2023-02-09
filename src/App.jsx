@@ -71,7 +71,7 @@ const App = () => {
                         }}
                     />
                     <CountResults totalResults={totalResults} />
-                    {/* <Result /> */}
+                    <Result results={results}/>
                 </main>
             </div>
         </div>
