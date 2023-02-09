@@ -47,7 +47,8 @@
     align-items: center;
     justify-content: space-around;
     position: relative;
-
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .container-app .container main input {
@@ -55,7 +56,7 @@
     border-radius: 1rem;
     width: 400px;
     background-color: #191622;
-    color: #FFF;
+    color: #fff;
     text-align: center;
     display: block;
     margin-top: 10px;
@@ -71,7 +72,7 @@
     border-radius: 1rem;
     width: 150px;
     background-color: #191622;
-    color: #FFF;
+    color: #fff;
     text-transform: uppercase;
     text-align: center;
     display: inline-block;
@@ -91,17 +92,9 @@
     padding: 10px;
 }
 
-.form {
-    margin-top: 50px;
-    margin-right: 100px;
-    
-}
-
 .page {
     color: #9977ee;
     font-size: x-large;
-    margin-top: 40px;
-    margin-left: 10px;
 }
 
 .page ul {
@@ -115,7 +108,6 @@
     text-decoration: none;
     background-color: #4499;
     border-radius: 1rem;
-    
 }
 
 .page ul li a {
@@ -135,9 +127,8 @@
 
 .result {
     overflow-y: scroll;
-    max-height: calc(100vh - 250px);
-    width: 500px;
-    margin: 10px;
+    max-height: calc(100vh - 450px);
+    flex-basis: 100%;;
 }
 
 .list {
@@ -163,14 +154,4 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-}
-
-.form small {
-    background-color: #FFF;
-    color: #d61616d5;
-    margin-left: 150px;
-    margin-right: 250px;
-    font-weight: 400;
-    font-size: rem;
-    border-radius: 0.4rem;
 }

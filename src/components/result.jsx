@@ -1,10 +1,10 @@
-const Result = ( props ) => {
+const Result = (props) => {
     const { results } = props
-    
-    if(!results.length) {
-        return null 
+
+    if (!results.length) {
+        return null
     }
-    
+
     return (
         <div className="result">
             <ul className="list">
@@ -23,9 +23,9 @@ const Result = ( props ) => {
                         </li>
                     )
                 })}
-            </ul>    
+            </ul>
         </div>
     )
 }
 
-export default Result;
+export default Result

@@ -1,14 +1,14 @@
-import axios from 'axios'
 import { useState } from 'react'
-import Pagination from './components/Pagination'
-import './App.css'
+
+import axios from 'axios'
+
 import Header from './components/header'
-import Form from './components/form'
+import Form from './components/Form'
 import Result from './components/Result'
 import CountResults from './components/CountResults'
 import PageChange from './components/Pagination'
 
-const ITEMS_PER_PAGE = 30
+import './App.css'
 
 const ENV = import.meta.env
 
@@ -16,10 +16,11 @@ const App = () => {
     const [results, setResults] = useState([])
     const [totalResults, setTotalResults] = useState(0)
     const [activePage, setActivePage] = useState(1)
+    const [query, setQuery] = useState('')
 
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber)
-        handleSearch(pageNumber)
+        handleSearch(query, pageNumber)
     }
 
     const handleSearch = async (query, page) => {
@@ -27,7 +28,7 @@ const App = () => {
 
         const queryStringFromObject = new URLSearchParams({
             q: query,
-            per_page: ITEMS_PER_PAGE,
+            per_page: ENV.VITE_ITEMS_PER_PAGE,
             page: page
         }).toString()
 
@@ -51,39 +52,38 @@ const App = () => {
             })
     }
 
-    const reset = () => {
+    const handleOnReset = () => {
         setTotalResults(0)
         setResults([])
         setActivePage(1)
+        setQuery('')
     }
 
     return (
         <div className="container-app">
             <div className="container">
-
                 <Header title={'Buscador de usuários do GitHub'} />
 
                 <main>
                     <Form
                         onSubmitForm={({ query }) => {
                             handleSearch(query, 1)
+                            setQuery(query)
                         }}
                         onResetForm={() => {
-                            reset()
+                            handleOnReset()
                         }}
                     />
 
                     <CountResults totalResults={totalResults} />
 
+                    <Result results={results} />
+
                     <PageChange
                         totalResults={totalResults}
                         activePage={activePage}
-                        ITEMS_PER_PAGE={ITEMS_PER_PAGE}
                         handlePageChange={handlePageChange}
                     />
-
-                    <Result results={results}/>
-
                 </main>
             </div>
         </div>
