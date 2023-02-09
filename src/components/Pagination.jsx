@@ -2,8 +2,7 @@ import Pagination from 'react-js-pagination'
 
 const ENV = import.meta.env
 
-const PageChange = (props) => {
-    const { activePage, totalResults, handlePageChange } = props
+const PageChange = ( activePage, totalResults, handlePageChange ) => {
 
     if (totalResults < ENV.VITE_ITEMS_PER_PAGE) {
         return null
