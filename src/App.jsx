@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import Pagination from 'react-js-pagination'
 import './App.css'
+import Header from './components/header'
 
 const ITEMS_PER_PAGE = 30
 
@@ -67,11 +68,8 @@ const App = () => {
     return (
         <div className="container-app">
             <div className="container">
-                <header className="header-top">
-                    <ul>
-                        <li>Buscador de usuários do GitHub</li>
-                    </ul>
-                </header>
+                
+                <Header />
 
                 <main>
                     <div className="form">
