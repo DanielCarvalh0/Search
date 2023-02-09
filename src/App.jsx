@@ -1,33 +1,31 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Pagination from 'react-js-pagination'
 import './App.css'
 import Header from './components/header'
 import Form from './components/form'
 import Result from './components/result'
+import CountResults from './components/CountResults'
 
 const ITEMS_PER_PAGE = 30
 
 const ENV = import.meta.env
 
 const App = () => {
-    const [search, setSearch] = useState('')
     const [results, setResults] = useState([])
     const [totalResults, setTotalResults] = useState(0)
     const [activePage, setActivePage] = useState(1)
-    const [isSubmited, setIsSubmited] = useState(false)
 
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber)
         handleSearch(pageNumber)
     }
 
-    const handleSearch = async (page) => {
-        setIsSubmited(true)
-        if (search === '') return
+    const handleSearch = async (query, page) => {
+        if (query === '') return
 
         const queryStringFromObject = new URLSearchParams({
-            q: search,
+            q: query,
             per_page: ITEMS_PER_PAGE,
             page: page
         }).toString()
@@ -37,7 +35,7 @@ const App = () => {
                 `https://api.github.com/search/users?${queryStringFromObject}`,
                 {
                     heders: {
-                        Authorization: (ENV.VITE_TOKEN_ACCESS)
+                        Authorization: ENV.VITE_TOKEN_ACCESS
                     }
                 }
             )
@@ -52,30 +50,28 @@ const App = () => {
             })
     }
 
-    const enterSubmit = (e) => {
-        if (e.key === 'Enter') {
-            const value = e.target.value
-            handleSearch(value)
-        }
-    }
-
     const reset = () => {
         setTotalResults(0)
-        setSearch('')
         setResults([])
         setActivePage(1)
-        setIsSubmited(false)
     }
 
     return (
         <div className="container-app">
             <div className="container">
-                
-                <Header />
+                <Header title={'Buscador de usuários do GitHub'} />
 
                 <main>
-                    <Form />
-                    <Result />
+                    <Form
+                        onSubmitForm={({ query }) => {
+                            handleSearch(query, 1)
+                        }}
+                        onResetForm={() => {
+                            reset()
+                        }}
+                    />
+                    <CountResults totalResults={totalResults} />
+                    {/* <Result /> */}
                 </main>
             </div>
         </div>

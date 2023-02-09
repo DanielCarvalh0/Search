@@ -1,9 +1,36 @@
-import Pagination from "react-js-pagination"
+import { useState } from 'react'
 
-const Form = () => {
+const Form = ({ onSubmitForm, onResetForm }) => {
+    const [query, setQuery] = useState('')
+
     return (
         <div className="form">
-            <input
+            <form
+                onSubmit={(event) => {
+                    event.preventDefault()
+                    onSubmitForm({
+                        query: query
+                    })
+                }}
+                onReset={() => {
+                    setQuery('')
+                    onResetForm()
+                }}
+            >
+                <input
+                    type="text"
+                    name="query"
+                    value={query}
+                    onChange={(event) => {
+                        setQuery(event.target.value || '')
+                    }}
+                    required
+                />
+
+                <button type="submit">Pesquisar</button>
+                <button type="reset">Limpar</button>
+            </form>
+            {/* <input
                 id="user-name"
                 type="text"
                 placeholder="Digite o username"
@@ -13,9 +40,9 @@ const Form = () => {
                 }}
                 onKeyDown={(e) => enterSubmit(e)}
                 value={search}
-            />
+            /> */}
 
-            {isSubmited && !search ? (
+            {/* {isSubmited && !search ? (
                 <small>Esse campo é obrigatorio</small>
             ) : null}
 
@@ -49,9 +76,9 @@ const Form = () => {
                         </li>
                     </ul>
                 </div>
-            ) : null}
+            ) : null} */}
         </div>
     )
 }
 
-export default Form;
+export default Form
